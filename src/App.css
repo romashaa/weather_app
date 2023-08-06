@@ -142,6 +142,10 @@ button:hover {
 .modal-content button:hover {
     background-color: #0056b3;
 }
+.weather-forecast{
+    display: flex;
+    overflow-X: auto;
+}
 
 
 

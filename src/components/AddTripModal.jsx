@@ -17,6 +17,7 @@ const AddTripModal = ({ showModal, setShowModal, addNewTrip, cities }) => {
                 endDate,
             });
         }
+        console.log(endDate)
         setSelectedCity('');
         setStartDate('');
         setEndDate('');

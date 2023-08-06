@@ -4,9 +4,12 @@ import TripList from "./components/TripList";
 import React, {useEffect, useState} from "react";
 import AddTripModal from "./components/AddTripModal";
 import TripSearch from "./components/TripSearch";
+import WeatherForecast from "./components/WeatherForecast";
+import ForecastComponent from "./components/ForecastComponent";
 
 function App() {
     const [showModal, setShowModal] = useState(false);
+
     const [trips, setTrips] = useState([
         {
             img: cities[0].imageUrl,
@@ -17,6 +20,18 @@ function App() {
     ]);
     const [filteredTrips, setFilteredTrips] = useState(trips);
     const [searchTerm, setSearchTerm] = useState('');
+
+    const [selectedTrip, setSelectedTrip] = useState(null);
+    const handleTripClick = (trip) => {
+        setSelectedTrip(trip);
+    };
+    useEffect(() => {
+        if (selectedTrip) {
+            console.log("City name: " + selectedTrip.cityName);
+            console.log("Start: " + selectedTrip.startDate);
+            console.log("End: " + selectedTrip.endDate);
+        }
+    }, [selectedTrip]);
 
     const addNewTrip = (newTrip) => {
         setTrips([...trips, newTrip]);
@@ -47,7 +62,7 @@ function App() {
         <TripSearch searchTerm={searchTerm} handleSearchChange={handleSearchChange}/>
 
         <div className="trip-list-container">
-            <TripList trips={filteredTrips} />
+            <TripList trips={filteredTrips} onTripClick={handleTripClick}/>
             <button className="add-trip-button" onClick={() => setShowModal(true)}>
                 <div className="button-content">
                     <div className="plus-icon">+</div>
@@ -55,7 +70,7 @@ function App() {
                 </div>
             </button>
         </div>
-
+        <WeatherForecast selectedTrip={selectedTrip} />
     </div>
   );
 }
