@@ -1,23 +1,61 @@
-import logo from './logo.svg';
 import './App.css';
+import {cities} from "./cities";
+import TripList from "./components/TripList";
+import React, {useEffect, useState} from "react";
+import AddTripModal from "./components/AddTripModal";
+import TripSearch from "./components/TripSearch";
 
 function App() {
+    const [showModal, setShowModal] = useState(false);
+    const [trips, setTrips] = useState([
+        {
+            img: cities[0].imageUrl,
+            cityName: 'Kyiv',
+            startDate: '2023-08-10',
+            endDate: '2023-08-15',
+        },
+    ]);
+    const [filteredTrips, setFilteredTrips] = useState(trips);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const addNewTrip = (newTrip) => {
+        setTrips([...trips, newTrip]);
+    };
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);;
+    };
+
+    useEffect(() => {
+        // Reset filteredTrips to all trips when searchTerm is empty
+        if (searchTerm === '') {
+            setFilteredTrips(trips);
+        }
+        const filteredTrips = trips.filter((trip) =>
+            trip.cityName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredTrips(filteredTrips);
+    }, [searchTerm, trips]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <AddTripModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            addNewTrip={addNewTrip}
+            cities={cities}
+        />
+        <TripSearch searchTerm={searchTerm} handleSearchChange={handleSearchChange}/>
+
+        <div className="trip-list-container">
+            <TripList trips={filteredTrips} />
+            <button className="add-trip-button" onClick={() => setShowModal(true)}>
+                <div className="button-content">
+                    <div className="plus-icon">+</div>
+                    <div className="button-text">Add Trip</div>
+                </div>
+            </button>
+        </div>
+
     </div>
   );
 }
