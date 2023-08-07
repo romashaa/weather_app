@@ -7,23 +7,28 @@ trip is enough). The list should be scrollable.
 3. When user selects a trip from the list, a forecast for each day of the trip
 should be displayed.
 4. On the top:
-  a. There should be a possibility to search for a trip
-5. The app should include a button for adding a new trip. When the user clicks
+
+      a. There should be a possibility to search for a trip
+6. The app should include a button for adding a new trip. When the user clicks
 on "Add trip," a modal window should appear. Inside the modal, the user
 should have the ability to:
 
-  a. Choose a city from a predefined list (you should have a mock list of
+      a. Choose a city from a predefined list (you should have a mock list of
 cities that the API supports, with images).
-  b. Enter the start date of the trip (the start date should be within the next
+
+      b. Enter the start date of the trip (the start date should be within the next
 15 days).
-  c. Enter the end date of the trip (the end date should be within the next 15
+
+      c. Enter the end date of the trip (the end date should be within the next 15
 days).
 Upon clicking "Done," the trip should be added to the list.
 Modal visualization Modal.png
-7. On the right side of the page:
-a. When user selects a trip, today's weather forecast for that city should
+8. On the right side of the page:
+
+      a. When user selects a trip, today's weather forecast for that city should
 be displayed.
-b. There should be a countdown timer from the current date to the start
+
+      b. There should be a countdown timer from the current date to the start
 date of the trip.
 
 Additionally:
