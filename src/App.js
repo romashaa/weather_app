@@ -12,14 +12,18 @@ import Header from "./components/Header";
 function App() {
     const [showModal, setShowModal] = useState(false);
 
-    const [trips, setTrips] = useState([
+    const initialTrips = JSON.parse(localStorage.getItem('trips')) || [
         {
             img: cities[0].imageUrl,
             cityName: 'Kyiv',
             startDate: '2023-08-20',
             endDate: '2023-08-22',
-        },
-    ]);
+        }
+    ];
+    const [trips, setTrips] = useState(initialTrips);
+    useEffect(() => {
+        localStorage.setItem('trips', JSON.stringify(trips));
+    }, [trips]);
     const [filteredTrips, setFilteredTrips] = useState(trips);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -27,13 +31,6 @@ function App() {
     const handleTripClick = (trip) => {
         setSelectedTrip(trip);
     };
-    useEffect(() => {
-        if (selectedTrip) {
-            console.log("City name: " + selectedTrip.cityName);
-            console.log("Start: " + selectedTrip.startDate);
-            console.log("End: " + selectedTrip.endDate);
-        }
-    }, [selectedTrip]);
 
     const addNewTrip = (newTrip) => {
         setTrips([...trips, newTrip]);
@@ -41,19 +38,18 @@ function App() {
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);;
     };
-
     useEffect(() => {
-        // Reset filteredTrips to all trips when searchTerm is empty
-        if (searchTerm === '') {
-            setFilteredTrips(trips);
-        }
         const filteredTrips = trips.filter((trip) =>
             trip.cityName.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setFilteredTrips(filteredTrips);
+        const sortedTrips = filteredTrips.sort(
+            (a, b) => new Date(a.startDate) - new Date(b.startDate)
+        );
+        setFilteredTrips(sortedTrips);
     }, [searchTerm, trips]);
 
-  return (
+
+    return (
     <div className="App">
         <AddTripModal
             showModal={showModal}
