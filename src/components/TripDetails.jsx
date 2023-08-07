@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {weatherConditions} from "../weatherConditions";
+import {weatherConditions} from "../data/weatherConditions";
 import axios from "axios";
 
 const TripDetails = ({ selectedTrip }) => {

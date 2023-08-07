@@ -11,11 +11,11 @@
 }
 .trip-list-container {
     display: flex;
+    width: 100%;
 }
 
 .trip-list {
     display: flex;
-    width: 100%;
     overflow-x: auto;
     gap: 20px;
     white-space: nowrap;
@@ -44,14 +44,13 @@
     border: none;
     width: 200px;
     height: 200px;
-    /*border-radius: 8px;*/
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    /*margin-top: 10px;*/
     margin-left: 15px;
     margin-top: 10px;
+    left: 0;
 }
 
 /* Styling for the plus icon inside the button */

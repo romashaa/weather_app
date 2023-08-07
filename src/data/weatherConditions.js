@@ -1,10 +1,8 @@
-import clear from './img/weather/sun.png'
-import partCloudy from './img/weather/cloudy.png'
-import rain from './img/weather/rainy-day.png'
-import storm from './img/weather/storm.png'
-import cloudy from './img/weather/cloud.png'
-
-
+import clear from '../img/weather/sun.png'
+import partCloudy from '../img/weather/cloudy.png'
+import rain from '../img/weather/rainy-day.png'
+import storm from '../img/weather/storm.png'
+import cloudy from '../img/weather/cloud.png'
 
 export const weatherConditions =[
     {

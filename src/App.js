@@ -1,6 +1,6 @@
 import './App.css';
 import './global-styles.css'
-import {cities} from "./cities";
+import {cities} from "./data/cities";
 import TripList from "./components/TripList";
 import React, {useEffect, useState} from "react";
 import AddTripModal from "./components/AddTripModal";

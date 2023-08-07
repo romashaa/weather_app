@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {weatherConditions} from "../weatherConditions";
+import {weatherConditions} from "../data/weatherConditions";
 
 const WeatherForecast = ({ selectedTrip }) => {
     const [weatherData, setWeatherData] = useState(null);

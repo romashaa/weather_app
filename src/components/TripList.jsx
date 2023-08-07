@@ -23,7 +23,7 @@ const TripList = ({ trips, onTripClick }) => {
     };
 
     return (
-        <div>
+        <div style={{width:'45%'}}>
             <div className="trip-list">
                 {trips.map((trip, index) => (
                     <div
