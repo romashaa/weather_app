@@ -24,6 +24,7 @@ a. When user selects a trip, today's weather forecast for that city should
 be displayed.
 b. There should be a countdown timer from the current date to the start
 date of the trip.
+
 Additionally:
 1. Implement next and previous buttons for the list to handle scrolling better
 2. Sort trips by start trip date
