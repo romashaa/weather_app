@@ -57,13 +57,11 @@ const WeatherForecast = ({ selectedTrip }) => {
                 });
 
                 return (
-                    <div key={day.datetime} style={{ margin: '8px' }}>
+                    <div key={day.datetime} style={{ margin: '20px', textAlign:'center' }}>
                         <p>{dayName}</p>
                         <p>{formattedDate}</p>
                         {getWeatherIcon(day.conditions.split(',')[0])}
-                        <p>{day.tempmax}/{day.tempmin} &#8451;</p>
-                        {/*<p>{day.conditions}</p>*/}
-
+                        <p>{Math.round(day.tempmax)}/{Math.round(day.tempmin)} &#8451;</p>
                     </div>
                 );
             })}

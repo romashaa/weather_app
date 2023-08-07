@@ -76,7 +76,7 @@ const TripDetails = ({ selectedTrip }) => {
             <div style={{marginTop:'30%'}}>
                 <h1>{formattedDate}</h1>
                 {getWeatherIcon(weatherData.days[0].conditions.split(',')[0])}
-                <h1>{weatherData.days[0].temp} &#8451;</h1>
+                <h1>{Math.round(weatherData.days[0].temp)} &#8451;</h1>
                 <h3>{weatherData.address}</h3>
                 <p style={{ display: 'flex', justifyContent: 'space-between', padding:'20px' }}>
                 <span>

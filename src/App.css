@@ -1,29 +1,21 @@
 .trip-card {
     border: 1px solid #ccc;
     margin-top: 10px;
-    /*border-radius: 8px;*/
-    /*padding: 10px;*/
     width: 200px;
 }
 .trip-card:hover {
     border-color: blue;
 }
+.selected{
+    border-color: blue;
+}
 .trip-list-container {
-    /*width: 70%;*/
-    /*overflow-x: auto;*/
-    /*display: flex;*/
-    /*gap: 10px;*/
-    /*justify-content: flex-start;*/
-    /*width: 70%;*/
     display: flex;
 }
 
-/* Styling for the trip list */
 .trip-list {
     display: flex;
-    /*flex-wrap: wrap;*/
-    /*flex: 4;*/
-    width: 50%;
+    width: 100%;
     overflow-x: auto;
     gap: 20px;
     white-space: nowrap;
@@ -47,8 +39,6 @@
 
 }
 
-
-/* Styling for the add trip button */
 .add-trip-button {
     background-color: #ccc;
     border: none;

@@ -6,7 +6,6 @@ import React, {useEffect, useState} from "react";
 import AddTripModal from "./components/AddTripModal";
 import TripSearch from "./components/TripSearch";
 import WeatherForecast from "./components/WeatherForecast";
-import ForecastComponent from "./components/ForecastComponent";
 import TripDetails from "./components/TripDetails";
 import Header from "./components/Header";
 
