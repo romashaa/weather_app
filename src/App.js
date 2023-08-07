@@ -1,4 +1,5 @@
 import './App.css';
+import './global-styles.css'
 import {cities} from "./cities";
 import TripList from "./components/TripList";
 import React, {useEffect, useState} from "react";
@@ -6,6 +7,8 @@ import AddTripModal from "./components/AddTripModal";
 import TripSearch from "./components/TripSearch";
 import WeatherForecast from "./components/WeatherForecast";
 import ForecastComponent from "./components/ForecastComponent";
+import TripDetails from "./components/TripDetails";
+import Header from "./components/Header";
 
 function App() {
     const [showModal, setShowModal] = useState(false);
@@ -14,8 +17,8 @@ function App() {
         {
             img: cities[0].imageUrl,
             cityName: 'Kyiv',
-            startDate: '2023-08-10',
-            endDate: '2023-08-15',
+            startDate: '2023-08-20',
+            endDate: '2023-08-22',
         },
     ]);
     const [filteredTrips, setFilteredTrips] = useState(trips);
@@ -59,6 +62,8 @@ function App() {
             addNewTrip={addNewTrip}
             cities={cities}
         />
+
+        <Header/>
         <TripSearch searchTerm={searchTerm} handleSearchChange={handleSearchChange}/>
 
         <div className="trip-list-container">
@@ -70,7 +75,8 @@ function App() {
                 </div>
             </button>
         </div>
-        <WeatherForecast selectedTrip={selectedTrip} />
+        {selectedTrip && <WeatherForecast selectedTrip={selectedTrip}/>}
+        {selectedTrip && <TripDetails selectedTrip={selectedTrip} />}
     </div>
   );
 }

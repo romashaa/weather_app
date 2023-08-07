@@ -32,8 +32,9 @@ const AddTripModal = ({ showModal, setShowModal, addNewTrip, cities }) => {
         <div className={`modal ${showModal ? 'show' : ''}`}>
             <form onSubmit={handleSubmit} className="modal-content">
                 <h2>Create New Trip</h2>
-                <label htmlFor="cityName">City Name:</label>
+                <label htmlFor="cityName">City:</label>
                 <select
+                    className='modal-input'
                     id="cityName"
                     value={selectedCity}
                     onChange={(e) => setSelectedCity(e.target.value)}
@@ -48,6 +49,7 @@ const AddTripModal = ({ showModal, setShowModal, addNewTrip, cities }) => {
                 </select>
                 <label htmlFor="startDate">Start Date:</label>
                 <input
+                    className='modal-input'
                     type="date"
                     id="startDate"
                     value={startDate}
@@ -58,6 +60,7 @@ const AddTripModal = ({ showModal, setShowModal, addNewTrip, cities }) => {
                 />
                 <label htmlFor="endDate">End Date:</label>
                 <input
+                    className='modal-input'
                     type="date"
                     id="endDate"
                     value={endDate}
@@ -66,7 +69,10 @@ const AddTripModal = ({ showModal, setShowModal, addNewTrip, cities }) => {
                     min={startDate}
                     max={maxEndDateStr}
                 />
-                <button type="submit">Create Trip</button>
+                <button className="modal-button" type="submit">Create Trip</button>
+                <button className="modal-button" onClick={() => setShowModal(false)}>
+                    Close
+                </button>
             </form>
         </div>
     );

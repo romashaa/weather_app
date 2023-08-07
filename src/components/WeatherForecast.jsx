@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import fetchWeatherData from "../weatherApi";
-import ForecastComponent from "./ForecastComponent";
+import {weatherConditions} from "../weatherConditions";
 
 const WeatherForecast = ({ selectedTrip }) => {
     const [weatherData, setWeatherData] = useState(null);
@@ -18,6 +17,18 @@ const WeatherForecast = ({ selectedTrip }) => {
         } catch (error) {
             console.error('Error fetching weather data:', error);
         }
+    };
+
+    const getWeatherIcon = (condition) => {
+        const matchingCondition = weatherConditions.find(
+            (item) => item.condition === condition
+        );
+
+        return matchingCondition ? (
+            <img className='weatherIcon' src={matchingCondition.img} alt={condition} />
+        ) : (
+            <p>{condition}</p>
+        );
     };
 
     // Fetch weather data when selectedTrip changes
@@ -49,9 +60,10 @@ const WeatherForecast = ({ selectedTrip }) => {
                     <div key={day.datetime} style={{ margin: '8px' }}>
                         <p>{dayName}</p>
                         <p>{formattedDate}</p>
+                        {getWeatherIcon(day.conditions.split(',')[0])}
                         <p>{day.tempmax}/{day.tempmin} &#8451;</p>
-                        <p>{day.conditions}</p>
-                        {/* Add more weather data as needed */}
+                        {/*<p>{day.conditions}</p>*/}
+
                     </div>
                 );
             })}
