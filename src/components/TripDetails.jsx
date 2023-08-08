@@ -8,7 +8,7 @@ const TripDetails = ({ selectedTrip }) => {
 
     const fetchWeatherData = async () => {
         const apiKey = 'VEXZE3VY8T85AKAS5JSPTQUQN';
-        const today = new Date().toISOString().split('T')[0];
+        // const today = new Date().toISOString().split('T')[0];
 
         try {
             const response = await axios.get(
