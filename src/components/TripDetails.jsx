@@ -12,7 +12,7 @@ const TripDetails = ({ selectedTrip }) => {
 
         try {
             const response = await axios.get(
-                `/VisualCrossingWebServices/rest/services/timeline/${selectedTrip.cityName}/today?unitGroup=metric&include=days&key=${apiKey}&contentType=json`
+                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${selectedTrip.cityName}/today?unitGroup=metric&include=days&key=${apiKey}&contentType=json`
             );
 
             setWeatherData(response.data);
