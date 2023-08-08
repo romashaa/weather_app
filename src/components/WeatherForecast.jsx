@@ -14,6 +14,7 @@ const WeatherForecast = ({selectedTrip}) => {
             const response = await axios.get(
                 `/VisualCrossingWebServices/rest/services/timeline/${selectedTrip.cityName}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${apiKey}&contentType=json`
             );
+            console.log("key", apiKey)
             console.log("resp", response.data)
             setWeatherData(response.data);
             setLoading(false)

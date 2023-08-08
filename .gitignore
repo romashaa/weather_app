@@ -9,7 +9,7 @@ package-lock.json
 /coverage
 # production
 /build
-
+/vercel.json
 # misc
 .DS_Store
 .env.local
