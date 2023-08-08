@@ -4,6 +4,7 @@ import {weatherConditions} from "../data/weatherConditions";
 
 const WeatherForecast = ({ selectedTrip }) => {
     const [weatherData, setWeatherData] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     const fetchWeatherData = async () => {
         const apiKey = 'VEXZE3VY8T85AKAS5JSPTQUQN';
@@ -34,12 +35,16 @@ const WeatherForecast = ({ selectedTrip }) => {
     // Fetch weather data when selectedTrip changes
     useEffect(() => {
         if (selectedTrip) {
-            fetchWeatherData();
+            fetchWeatherData().then(()=>{
+                setLoading(false)
+            })
+
+
         }
     }, [selectedTrip]);
 
     // Render weather data
-    if (!weatherData) {
+    if (loading) {
         return <p>Loading...</p>;
     }
 
