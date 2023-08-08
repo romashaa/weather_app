@@ -14,7 +14,10 @@ const WeatherForecast = ({selectedTrip}) => {
             const response = await axios.get(
                 `/VisualCrossingWebServices/rest/services/timeline/${selectedTrip.cityName}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${apiKey}&contentType=json`
             );
+            console.log("resp", response.data)
             setWeatherData(response.data);
+            setLoading(false)
+
 
         } catch (error) {
             console.error('Error fetching weather data:', error);
@@ -36,18 +39,19 @@ const WeatherForecast = ({selectedTrip}) => {
     // Fetch weather data when selectedTrip changes
     useEffect(() => {
         if (selectedTrip) {
-            fetchWeatherData().then(() => {
-                console.log(weatherData)
-                setLoading(false)
-            })
+            fetchWeatherData()
 
 
         }
     }, [selectedTrip]);
 
     // Render weather data
-    if (loading || !weatherData) {
+    if (loading) {
         return <p>Loading...</p>;
+    }
+
+    if (!weatherData) {
+        return <p>Weather is unavailable</p>;
     }
 
     return (
