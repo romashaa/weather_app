@@ -46,7 +46,7 @@ const WeatherForecast = ({selectedTrip}) => {
     }, [selectedTrip]);
 
     // Render weather data
-    if (loading) {
+    if (loading || !weatherData) {
         return <p>Loading...</p>;
     }
 
