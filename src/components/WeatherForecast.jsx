@@ -2,19 +2,20 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {weatherConditions} from "../data/weatherConditions";
 
-const WeatherForecast = ({ selectedTrip }) => {
+const WeatherForecast = ({selectedTrip}) => {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true)
 
     const fetchWeatherData = async () => {
         const apiKey = 'VEXZE3VY8T85AKAS5JSPTQUQN';
-        const { startDate, endDate } = selectedTrip;
+        const {startDate, endDate} = selectedTrip;
 
         try {
             const response = await axios.get(
                 `/VisualCrossingWebServices/rest/services/timeline/${selectedTrip.cityName}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${apiKey}&contentType=json`
             );
             setWeatherData(response.data);
+
         } catch (error) {
             console.error('Error fetching weather data:', error);
         }
@@ -26,7 +27,7 @@ const WeatherForecast = ({ selectedTrip }) => {
         );
 
         return matchingCondition ? (
-            <img className='weatherIcon' src={matchingCondition.img} alt={condition} />
+            <img className='weatherIcon' src={matchingCondition.img} alt={condition}/>
         ) : (
             <p>{condition}</p>
         );
@@ -35,7 +36,8 @@ const WeatherForecast = ({ selectedTrip }) => {
     // Fetch weather data when selectedTrip changes
     useEffect(() => {
         if (selectedTrip) {
-            fetchWeatherData().then(()=>{
+            fetchWeatherData().then(() => {
+                console.log(weatherData)
                 setLoading(false)
             })
 
@@ -50,28 +52,28 @@ const WeatherForecast = ({ selectedTrip }) => {
 
     return (
 
-    <div>
-        <div style={{ display: 'flex', width:'50%', overflowX: 'auto' }}>
-            {weatherData.days.map((day) => {
-                // Format the date to display day name and date
-                const date = new Date(day.datetime);
-                const dayName = date.toLocaleString('en-US', { weekday: 'long' });
-                const formattedDate = date.toLocaleString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                });
+        <div>
+            <div style={{display: 'flex', width: '50%', overflowX: 'auto'}}>
+                {weatherData.days.map((day) => {
+                    // Format the date to display day name and date
+                    const date = new Date(day.datetime);
+                    const dayName = date.toLocaleString('en-US', {weekday: 'long'});
+                    const formattedDate = date.toLocaleString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                    });
 
-                return (
-                    <div key={day.datetime} style={{ margin: '20px', textAlign:'center' }}>
-                        <p>{dayName}</p>
-                        <p>{formattedDate}</p>
-                        {getWeatherIcon(day.conditions.split(',')[0])}
-                        <p>{Math.round(day.tempmax)}/{Math.round(day.tempmin)} &#8451;</p>
-                    </div>
-                );
-            })}
+                    return (
+                        <div key={day.datetime} style={{margin: '20px', textAlign: 'center'}}>
+                            <p>{dayName}</p>
+                            <p>{formattedDate}</p>
+                            {getWeatherIcon(day.conditions.split(',')[0])}
+                            <p>{Math.round(day.tempmax)}/{Math.round(day.tempmin)} &#8451;</p>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
-    </div>
     );
 };
 
