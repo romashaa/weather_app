@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/*",
+      "source": "/:path*",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
