@@ -27,13 +27,15 @@ const TripDetails = ({ selectedTrip }) => {
         const diffInMilliseconds = startDate - currentDate;
 
         const days = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-            (diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
+        const hours = Math.floor((diffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diffInMilliseconds % (1000 * 60)) / 1000);
 
-        setCountdown({ days, hours, minutes, seconds });
+        if (days < 0) {
+            setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        } else {
+            setCountdown({ days, hours, minutes, seconds });
+        }
     };
 
     useEffect(() => {
